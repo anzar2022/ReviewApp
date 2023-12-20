@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ReviewApp.Data\ReviewApp.Data.csproj" />
     <ProjectReference Include="..\ReviewApp.IRepositories\ReviewApp.IRepositories.csproj" />
   </ItemGroup>
 

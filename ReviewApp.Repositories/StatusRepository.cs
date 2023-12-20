@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ReviewApp.Data;
 using ReviewApp.IRepositories;
 using ReviewApp.Model;
 using System;
@@ -11,7 +12,7 @@ namespace ReviewApp.Repositories
 {
     public class StatusRepository : Repository<Status>, IStatusRepository
     {
-        public StatusRepository(DbContext context) : base(context)
+        public StatusRepository(ReviewAppDbContext context) : base(context)
         {
             // Additional configurations if needed
         }
