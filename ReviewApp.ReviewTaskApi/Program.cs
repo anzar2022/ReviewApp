@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using ReviewApp.Data;
 using ReviewApp.IRepositories;
 using ReviewApp.IServices;
+using ReviewApp.Repositories;
 using ReviewApp.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,9 +19,9 @@ builder.Services.AddScoped<IReviewTaskService, ReviewTaskService>();
 builder.Services.AddScoped<IStatusService, StatusService>();
 
 
-builder.Services.AddScoped<IQuarterRepository, IQuarterRepository>();
-builder.Services.AddScoped<IReviewTaskRepository, IReviewTaskRepository>();
-builder.Services.AddScoped<IStatusRepository, IStatusRepository>();
+builder.Services.AddScoped<IQuarterRepository, QuarterRepository>();
+builder.Services.AddScoped<IReviewTaskRepository, ReviewTaskRepository>();
+builder.Services.AddScoped<IStatusRepository, StatusRepository>();
 
 
 var app = builder.Build();
