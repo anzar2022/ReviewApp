@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ReviewApp.Data;
 using ReviewApp.IRepositories;
 using ReviewApp.Model;
 using System;
@@ -11,7 +12,7 @@ namespace ReviewApp.Repositories
 {
     public class QuarterRepository : Repository<Quarter>, IQuarterRepository
     {
-        public QuarterRepository(DbContext context) : base(context)
+        public QuarterRepository(ReviewAppDbContext context) : base(context)
         {
             // Additional configurations if needed
         }

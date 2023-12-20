@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ReviewApp.Data;
 using ReviewApp.IRepositories;
 using ReviewApp.Model;
 using System;
@@ -11,7 +12,7 @@ namespace ReviewApp.Repositories
 {
     public class ReviewTaskRepository : Repository<ReviewTask>, IReviewTaskRepository
     {
-        public ReviewTaskRepository(DbContext context) : base(context)
+        public ReviewTaskRepository(ReviewAppDbContext context) : base(context)
         {
             // Additional configurations if needed
         }
