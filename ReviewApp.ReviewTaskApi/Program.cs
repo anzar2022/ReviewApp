@@ -28,16 +28,15 @@ builder.Services.AddCors(options =>
     options.AddPolicy("EnableCORS", builder =>
     {
         builder.AllowAnyOrigin()
-           .AllowAnyMethod()
-           .AllowAnyHeader();
+               .AllowAnyMethod()
+               .AllowAnyHeader();
     });
 });
 
+
+
 var app = builder.Build();
 app.MapControllers();
-
-app.MapGet("/", () => "Hello World!");
-
 app.UseCors("EnableCORS");
-
+app.MapGet("/", () => "Hello World!");
 app.Run();
