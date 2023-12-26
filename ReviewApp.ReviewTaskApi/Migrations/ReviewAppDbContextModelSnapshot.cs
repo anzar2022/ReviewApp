@@ -40,7 +40,7 @@ namespace ReviewApp.ReviewTaskApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Quarters");
+                    b.ToTable("Quarters", (string)null);
                 });
 
             modelBuilder.Entity("ReviewApp.Model.ReviewTask", b =>
@@ -93,7 +93,7 @@ namespace ReviewApp.ReviewTaskApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ReviewTasks");
+                    b.ToTable("ReviewTasks", (string)null);
                 });
 
             modelBuilder.Entity("ReviewApp.Model.Status", b =>
@@ -110,7 +110,7 @@ namespace ReviewApp.ReviewTaskApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Statuses");
+                    b.ToTable("Statuses", (string)null);
                 });
 #pragma warning restore 612, 618
         }
