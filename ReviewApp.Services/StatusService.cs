@@ -20,7 +20,7 @@ namespace ReviewApp.Services
 
         public async Task<Status> GetStatusByIdAsync(int id)
         {
-            return await _repository.GetByIdAsync(id);
+            return await _repository.GetByIdAsync<int>(id);
         }
 
         public async Task<IEnumerable<Status>> GetAllStatusesAsync()

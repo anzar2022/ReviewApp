@@ -18,9 +18,9 @@ namespace ReviewApp.Services
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
-        public async Task<Quarter> GetQuarterByIdAsync(long Id)
+        public async Task<Quarter> GetQuarterByIdAsync(int Id)
         {
-            return await _repository.GetByIdAsync(Id);
+            return await _repository.GetByIdAsync<int>(Id);
         }
 
         public async Task<IEnumerable<Quarter>> GetAllQuartersAsync()
@@ -38,7 +38,7 @@ namespace ReviewApp.Services
             await _repository.UpdateAsync(quarter);
         }
 
-        public async Task DeleteQuarterAsync(long Id)
+        public async Task DeleteQuarterAsync(int Id)
         {
             await _repository.DeleteAsync(Id);
         }

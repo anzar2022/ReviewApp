@@ -10,7 +10,7 @@ namespace ReviewApp.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        private readonly DbContext _context;
+        protected readonly DbContext _context;
         private readonly DbSet<T> _dbSet;
 
         public Repository(DbContext context)
@@ -23,6 +23,11 @@ namespace ReviewApp.Repositories
         {
             return await _dbSet.FindAsync(id);
         }
+        public async Task<T> GetByIdAsync<TId>(TId id)
+        {
+            return await _dbSet.FindAsync(id);
+        }
+
 
         public async Task<IEnumerable<T>> GetAllAsync()
         {
