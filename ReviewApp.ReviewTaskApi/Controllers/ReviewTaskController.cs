@@ -56,13 +56,7 @@ namespace ReviewApp.ReviewTaskApi.Controllers
                 return BadRequest();
             }
 
-            var existingTask = await _reviewTaskService.GetReviewTaskByIdAsync(Id);
-            if (existingTask == null)
-            {
-                return NotFound();
-            }
-
-            await _reviewTaskService.UpdateReviewTaskAsync(task);
+            await _reviewTaskService.UpdateReviewTaskAsync(Id, task);
             return NoContent();
         }
 

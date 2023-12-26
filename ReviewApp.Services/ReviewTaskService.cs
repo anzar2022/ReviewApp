@@ -33,9 +33,27 @@ namespace ReviewApp.Services
             await _repository.AddAsync(task);
         }
 
-        public async Task UpdateReviewTaskAsync(ReviewTask task)
+        public async Task UpdateReviewTaskAsync(long Id, ReviewTask task)
         {
-            await _repository.UpdateAsync(task);
+
+            var existingTask = await _repository.GetByIdAsync(Id);
+            if (existingTask != null)
+            {
+                existingTask.TaskTitle = task.TaskTitle;
+                existingTask.TaskDescription = task.TaskDescription;
+                existingTask.StatusId = task.StatusId;
+                existingTask.QuarterId = task.QuarterId;
+                existingTask.ManagerRating = task.ManagerRating;
+                existingTask.EmployeeRating = task.EmployeeRating;
+                existingTask.EmployeeComment = task.EmployeeComment;
+                existingTask.ManagerComment = task.ManagerComment;
+                existingTask.PercentageComplete = task.PercentageComplete;
+                existingTask.Weightage = task.Weightage;
+                existingTask.TaskStartDate = task.TaskStartDate;
+                existingTask.TaskCompleteDate = task.TaskCompleteDate;
+            }
+
+            await _repository.UpdateAsync(existingTask);
         }
 
         public async Task DeleteReviewTaskAsync(long Id)
