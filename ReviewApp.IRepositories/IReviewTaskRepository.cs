@@ -14,5 +14,6 @@ namespace ReviewApp.IRepositories
         // Task<ReviewTask> GetTaskByStatusAsync(int status);
 
         Task<IEnumerable<ReviewTask>> GetAllAsyncWithQuarter();
+        Task<IEnumerable<ReviewTask>> GetAllAsyncWithForeignKey();
     }
 }
