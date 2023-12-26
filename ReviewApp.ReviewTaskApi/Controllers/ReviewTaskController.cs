@@ -79,5 +79,20 @@ namespace ReviewApp.ReviewTaskApi.Controllers
             await _reviewTaskService.DeleteReviewTaskAsync(Id);
             return NoContent();
         }
+        //[HttpGet("{Id}", Name = "GetWeightageSumByQuarterId")]
+        [Route("GetWeightageSumByQuarterId/{Id:int}")]
+        public async Task<int> GetWeightageSumByQuarterIdAsync(int Id)
+        {
+            int weightage = await _reviewTaskService.GetWeightageSumByQuarterIdAsync(Id);
+
+            if (weightage == 0)
+            {
+
+                return 0;
+            }
+
+            return weightage;
+
+        }
     }
 }
