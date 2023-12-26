@@ -17,6 +17,12 @@ namespace ReviewApp.Repositories
             // Additional configurations if needed
         }
 
-       
+        public async Task<IEnumerable<ReviewTask>> GetAllAsyncWithQuarter()
+        {
+            return await _context.Set<ReviewTask>().Include(rt => rt.Quarter).ToListAsync();
+          
+        }
+
+
     }
 }
