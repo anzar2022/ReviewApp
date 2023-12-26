@@ -9,10 +9,10 @@ namespace ReviewApp.IServices
 {
     public interface IQuarterService
     {
-        Task<Quarter> GetQuarterByIdAsync(long Id);
+        Task<Quarter> GetQuarterByIdAsync(int Id);
         Task<IEnumerable<Quarter>> GetAllQuartersAsync();
         Task AddQuarterAsync(Quarter quarter);
         Task UpdateQuarterAsync(Quarter quarter);
-        Task DeleteQuarterAsync(long Id);
+        Task DeleteQuarterAsync(int Id);
     }
 }

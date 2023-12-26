@@ -23,6 +23,11 @@ namespace ReviewApp.Repositories
         {
             return await _dbSet.FindAsync(id);
         }
+        public async Task<T> GetByIdAsync<TId>(TId id)
+        {
+            return await _dbSet.FindAsync(id);
+        }
+
 
         public async Task<IEnumerable<T>> GetAllAsync()
         {
