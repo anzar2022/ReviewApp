@@ -23,6 +23,12 @@ namespace ReviewApp.Repositories
           
         }
 
+        public async Task<IEnumerable<ReviewTask>> GetAllAsyncWithForeignKey()
+        {
+            return await _context.Set<ReviewTask>().Include(rt => rt.Quarter).Include(rt => rt.Status).ToListAsync();
+
+        }
+
 
     }
 }

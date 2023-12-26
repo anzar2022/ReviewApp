@@ -18,6 +18,8 @@ namespace ReviewApp.Model
         public DateOnly TaskStartDate { get; set; }
         public DateOnly TaskCompleteDate { get; set; }
         public int StatusId { get; set; } = 0;
+        [ForeignKey("StatusId")]
+        public virtual Status? Status { get; set; }
         public int QuarterId { get; set; } = 0;
         [ForeignKey("QuarterId")]
         public virtual Quarter? Quarter { get; set; }
