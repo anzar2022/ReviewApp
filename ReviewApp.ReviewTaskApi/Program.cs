@@ -23,9 +23,20 @@ builder.Services.AddScoped<IQuarterRepository, QuarterRepository>();
 builder.Services.AddScoped<IReviewTaskRepository, ReviewTaskRepository>();
 builder.Services.AddScoped<IStatusRepository, StatusRepository>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("EnableCORS", builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
+
+
 
 var app = builder.Build();
 app.MapControllers();
-
+app.UseCors("EnableCORS");
 app.MapGet("/", () => "Hello World!");
 app.Run();
