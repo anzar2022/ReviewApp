@@ -13,6 +13,7 @@ namespace ReviewApp.Model
     {
         [Key]
         public int Id { get; set; }
+        public string QuarterCode { get; set; } = string.Empty;
         public string QuarterName { get; set; } = string.Empty;
     }
 }
