@@ -12,5 +12,7 @@ namespace ReviewApp.IRepositories
         // Define specific methods for ReviewTask if needed
         // For example:
         // Task<ReviewTask> GetTaskByStatusAsync(int status);
+
+        Task<IEnumerable<ReviewTask>> GetAllAsyncWithQuarter();
     }
 }
