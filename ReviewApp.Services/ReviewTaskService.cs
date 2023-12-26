@@ -25,7 +25,7 @@ namespace ReviewApp.Services
 
         public async Task<IEnumerable<ReviewTask>> GetAllReviewTasksAsync()
         {
-            return await _repository.GetAllAsyncWithQuarter();
+            return await _repository.GetAllAsyncWithForeignKey();
         }
 
         public async Task AddReviewTaskAsync(ReviewTask task)
