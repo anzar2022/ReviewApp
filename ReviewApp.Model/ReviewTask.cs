@@ -20,7 +20,7 @@ namespace ReviewApp.Model
         public int StatusId { get; set; } = 0;
         public int QuarterId { get; set; } = 0;
         [ForeignKey("QuarterId")]
-        public Quarter Quarter { get; set; }
+        public virtual Quarter? Quarter { get; set; }
         public int PercentageComplete { get; set; } =0;
 
 
