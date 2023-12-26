@@ -60,5 +60,10 @@ namespace ReviewApp.Services
         {
             await _repository.DeleteAsync(Id);
         }
+
+        public Task<int> GetWeightageSumByQuarterIdAsync(int quarterId)
+        {
+            return _repository.GetWeightageSumByQuarterIdAsync(quarterId);
+        }
     }
 }
