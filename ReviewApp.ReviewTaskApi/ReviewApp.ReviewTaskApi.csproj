@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ReviewApp.Data\ReviewApp.Data.csproj" />
+    <ProjectReference Include="..\ReviewApp.DTO\ReviewApp.DTO.csproj" />
     <ProjectReference Include="..\ReviewApp.IServices\ReviewApp.IServices.csproj" />
     <ProjectReference Include="..\ReviewApp.Repositories\ReviewApp.Repositories.csproj" />
     <ProjectReference Include="..\ReviewApp.Services\ReviewApp.Services.csproj" />

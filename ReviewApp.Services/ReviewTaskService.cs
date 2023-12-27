@@ -65,5 +65,20 @@ namespace ReviewApp.Services
         {
             return _repository.GetWeightageSumByQuarterIdAsync(quarterId);
         }
+
+        public async Task<ReviewTask> UpdateReviewTaskStartDateAsync(long Id , DateOnly TaskStartDate)
+        {
+            var oldTask  = await _repository.GetByIdAsync(Id);
+            if (oldTask != null)
+            {
+                oldTask.TaskStartDate =  TaskStartDate;
+                await _repository.UpdateAsync(oldTask);
+            }
+
+            return oldTask;
+
+
+        }
+
     }
 }
