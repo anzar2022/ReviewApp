@@ -46,7 +46,7 @@ namespace ReviewApp.ReviewTaskApi.Controllers
             }
 
             await _reviewTaskService.AddReviewTaskAsync(task);
-            return CreatedAtAction(nameof(GetReviewTaskById), new { id = task.Id }, task);
+            return Ok(task);
         }
 
         [HttpPut("{id}")]
@@ -57,10 +57,14 @@ namespace ReviewApp.ReviewTaskApi.Controllers
                 return BadRequest();
             }
 
-          
+            var existingTask = await _reviewTaskService.GetReviewTaskByIdAsync(Id);
+            if (existingTask == null)
+            {
+                return NotFound();
+            }
 
-            await _reviewTaskService.UpdateReviewTaskAsync(Id, task);
-            return NoContent();
+            await _reviewTaskService.UpdateReviewTaskAsync(task);
+            return Ok(existingTask);
         }
 
         [HttpDelete("{id}")]
