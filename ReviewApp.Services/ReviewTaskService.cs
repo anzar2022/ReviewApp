@@ -33,7 +33,7 @@ namespace ReviewApp.Services
             await _repository.AddAsync(task);
         }
 
-        public async Task UpdateReviewTaskAsync(long  Id , ReviewTask task)
+        public async Task UpdateReviewTaskAsync(long Id, ReviewTask task)
         {
 
             var existingTask = await _repository.GetByIdAsync(Id);
