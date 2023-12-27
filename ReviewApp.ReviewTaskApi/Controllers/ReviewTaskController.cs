@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ReviewApp.DTO;
 using ReviewApp.IServices;
 using ReviewApp.Model;
 
@@ -65,30 +66,86 @@ namespace ReviewApp.ReviewTaskApi.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteReviewTask(long Id)
         {
-            var task = await _reviewTaskService.GetReviewTaskByIdAsync(Id);
-
-            if (task == null)
+            try
             {
-                return NotFound();
-            }
+                var task = await _reviewTaskService.GetReviewTaskByIdAsync(Id);
 
-            await _reviewTaskService.DeleteReviewTaskAsync(Id);
-            return NoContent();
+                if (task == null)
+                {
+                    return NotFound();
+                }
+
+                await _reviewTaskService.DeleteReviewTaskAsync(Id);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or perform necessary actions
+                // For demonstration purposes, returning a 500 Internal Server Error response
+                return StatusCode(500, "An error occurred while processing the request.");
+            }
         }
-        //[HttpGet("{Id}", Name = "GetWeightageSumByQuarterId")]
         [Route("GetWeightageSumByQuarterId/{Id:int}")]
         public async Task<int> GetWeightageSumByQuarterIdAsync(int Id)
         {
-            int weightage = await _reviewTaskService.GetWeightageSumByQuarterIdAsync(Id);
-
-            if (weightage == 0)
+            try
             {
+                int weightage = await _reviewTaskService.GetWeightageSumByQuarterIdAsync(Id);
 
+                if (weightage == 0)
+                {
+                    return 0;
+                }
+
+                return weightage;
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or perform necessary actions
+                // For demonstration purposes, returning 0 as a default value in case of an exception
                 return 0;
             }
-
-            return weightage;
-
         }
+        [Route("UpdateReviewTaskStartDateAsync1/{Id:long}/{TaskStartDate:DateOnly}")]
+        public async Task<ActionResult> UpdateReviewTaskStartDateAsync1(long Id, DateOnly TaskStartDate )
+        {
+            try
+            {
+                var  reviewTask = await _reviewTaskService.UpdateReviewTaskStartDateAsync(Id,  TaskStartDate);
+
+                return Ok(reviewTask);
+
+               
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or perform necessary actions
+                // For demonstration purposes, returning 0 as a default value in case of an exception
+                throw;
+            }
+        }
+        [HttpPost("UpdateReviewTaskStartDateAsync")]
+        public async Task<ActionResult> UpdateReviewTaskStartDateAsync(UpdateTaskStartDateDto updateTaskStartDateDto)
+        {
+            try
+            {
+                var reviewTask = await _reviewTaskService.UpdateReviewTaskStartDateAsync(updateTaskStartDateDto.Id, updateTaskStartDateDto.TaskStartDate);
+
+                return Ok(reviewTask);
+
+
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or perform necessary actions
+                // For demonstration purposes, returning 0 as a default value in case of an exception
+                throw;
+            }
+        }
+
+
+
+
+
     }
 }
