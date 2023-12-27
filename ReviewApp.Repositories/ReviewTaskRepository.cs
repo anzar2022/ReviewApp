@@ -28,7 +28,23 @@ namespace ReviewApp.Repositories
             return await _context.Set<ReviewTask>().Include(rt => rt.Quarter).Include(rt => rt.Status).ToListAsync();
 
         }
+        public async Task<int> GetWeightageSumByQuarterIdAsync(int quarterId)
+        {
+            try
+            {
+                int weightageSum = await _context.Set<ReviewTask>()
+                    .Where(rt => rt.QuarterId == quarterId)
+                    .SumAsync(rt => rt.Weightage);
 
+                return weightageSum;
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception (log, throw, etc.)
+                // For demonstration purposes, rethrowing the exception
+                throw;
+            }
+        }
 
     }
 }

@@ -15,5 +15,7 @@ namespace ReviewApp.IRepositories
 
         Task<IEnumerable<ReviewTask>> GetAllAsyncWithQuarter();
         Task<IEnumerable<ReviewTask>> GetAllAsyncWithForeignKey();
+
+        Task<int> GetWeightageSumByQuarterIdAsync(int quarterId);
     }
 }
