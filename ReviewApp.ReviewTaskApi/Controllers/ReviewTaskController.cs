@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using ReviewApp.DTO;
 using ReviewApp.IServices;
 using ReviewApp.Model;
+using System.Threading.Tasks;
 
 namespace ReviewApp.ReviewTaskApi.Controllers
 {
@@ -63,7 +64,7 @@ namespace ReviewApp.ReviewTaskApi.Controllers
                 return NotFound();
             }
 
-            await _reviewTaskService.UpdateReviewTaskAsync(task);
+            await _reviewTaskService.UpdateReviewTaskAsync(Id,task);
             return Ok(existingTask);
         }
 
