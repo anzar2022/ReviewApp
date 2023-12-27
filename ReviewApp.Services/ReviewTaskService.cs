@@ -39,18 +39,15 @@ namespace ReviewApp.Services
             var existingTask = await _repository.GetByIdAsync(Id);
             if (existingTask != null)
             {
-                existingTask.TaskTitle = task.TaskTitle;
-                existingTask.TaskDescription = task.TaskDescription;
-                existingTask.StatusId = task.StatusId;
-                existingTask.QuarterId = task.QuarterId;
-                existingTask.ManagerRating = task.ManagerRating;
-                existingTask.EmployeeRating = task.EmployeeRating;
                 existingTask.EmployeeComment = task.EmployeeComment;
                 existingTask.ManagerComment = task.ManagerComment;
-                existingTask.PercentageComplete = task.PercentageComplete;
+                existingTask.TaskTitle = task.TaskTitle;
+                existingTask.TaskDescription = task.TaskDescription;
                 existingTask.Weightage = task.Weightage;
-                existingTask.TaskStartDate = task.TaskStartDate;
-                existingTask.TaskCompleteDate = task.TaskCompleteDate;
+                existingTask.StatusId = task.StatusId;
+                existingTask.EmployeeRating = task.EmployeeRating;
+                existingTask.ManagerRating = task.ManagerRating;
+                existingTask.PercentageComplete = task.PercentageComplete;
             }
 
             await _repository.UpdateAsync(existingTask);

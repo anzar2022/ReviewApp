@@ -79,7 +79,7 @@ namespace ReviewApp.UnitTest
             };
 
             mockService.Setup(service => service.GetReviewTaskByIdAsync(existingTaskId)).ReturnsAsync(existingTask);
-            mockService.Setup(service => service.UpdateReviewTaskAsync(existingTask)).Returns(Task.CompletedTask);
+           // mockService.Setup(service => service.UpdateReviewTaskAsync(existingTask)).Returns(Task.CompletedTask);
 
             // Act
             var result = await controller.UpdateReviewTask(existingTaskId, existingTask);
