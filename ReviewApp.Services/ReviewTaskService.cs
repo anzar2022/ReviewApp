@@ -69,12 +69,24 @@ namespace ReviewApp.Services
             if (oldTask != null)
             {
                 oldTask.TaskStartDate =  TaskStartDate;
-                await _repository.UpdateAsync(oldTask);
+                oldTask.IsTaskStartDate = true;
+                oldTask =  await _repository.UpdateAsync(oldTask);
             }
 
             return oldTask;
 
 
+        }
+        public async Task<ReviewTask> UpdateReviewTaskCompleteDateAsync(long Id, DateOnly TaskCompleteDate)
+        {
+            var oldTask = await _repository.GetByIdAsync(Id);
+            if (oldTask != null)
+            {
+                oldTask.TaskCompleteDate = TaskCompleteDate;
+                oldTask.IsTaskCompleteDate = true;
+                await _repository.UpdateAsync(oldTask);
+            }
+            return oldTask;
         }
 
     }

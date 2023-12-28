@@ -147,10 +147,24 @@ namespace ReviewApp.ReviewTaskApi.Controllers
                 throw;
             }
         }
+        [HttpPost("UpdateReviewTaskCompleteDateAsync")]
+        public async Task<ActionResult> UpdateReviewTaskCompleteDateAsync(UpdateTaskCompleteDateDto updateTaskCompleteDateDto)
+        {
+            try
+            {
+                var reviewTask = await _reviewTaskService.UpdateReviewTaskCompleteDateAsync(updateTaskCompleteDateDto.Id, updateTaskCompleteDateDto.TaskCompleteDate);
+
+                return Ok(reviewTask);
 
 
-
-
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or perform necessary actions
+                // For demonstration purposes, returning 0 as a default value in case of an exception
+                throw;
+            }
+        }
 
     }
 }

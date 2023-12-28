@@ -16,7 +16,13 @@ namespace ReviewApp.Model
         public double EmployeeRating {  get; set; } =0;
         public int Weightage { get; set; } =0;
         public DateOnly TaskStartDate { get; set; }
+
+        public bool IsTaskStartDate { get; set; } =false;
+
         public DateOnly TaskCompleteDate { get; set; }
+
+        public bool IsTaskCompleteDate { get; set; } = false;
+
         public int StatusId { get; set; } = 0;
         [ForeignKey("StatusId")]
         public virtual Status? Status { get; set; }
