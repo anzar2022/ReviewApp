@@ -20,5 +20,6 @@ namespace ReviewApp.IServices
         Task<ReviewTask> UpdateReviewTaskStartDateAsync(long Id, DateOnly TaskStartDate);
 
         Task<ReviewTask> UpdateReviewTaskCompleteDateAsync(long Id, DateOnly TaskCompleteDate);
+        Task<ReviewTask> UpdateReviewTaskCancelAsync(long Id);
     }
 }

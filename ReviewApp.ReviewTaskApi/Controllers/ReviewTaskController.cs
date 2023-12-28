@@ -165,6 +165,24 @@ namespace ReviewApp.ReviewTaskApi.Controllers
                 throw;
             }
         }
+        [HttpPost("UpdateReviewTaskCancelAsync/{Id:long}")]
+        public async Task<ActionResult> UpdateReviewTaskCancelAsync(long Id)
+        {
+            try
+            {
+                var reviewTask = await _reviewTaskService.UpdateReviewTaskCancelAsync(Id);
+
+                return Ok(reviewTask);
+
+
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or perform necessary actions
+                // For demonstration purposes, returning 0 as a default value in case of an exception
+                throw;
+            }
+        }
 
     }
 }
