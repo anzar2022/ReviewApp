@@ -34,17 +34,57 @@ namespace ReviewApp.Repositories
             return await _dbSet.ToListAsync();
         }
 
-        public async Task AddAsync(T entity)
+        public async Task<T> AddAsync(T entity)
         {
-            await _dbSet.AddAsync(entity);
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _dbSet.AddAsync(entity);
+                await _context.SaveChangesAsync();
+
+                return entity; // Return the added entity
+            }
+            catch (DbUpdateException ex)
+            {
+                // Handle specific database update exception, if needed
+                // You can log the exception or perform any other necessary actions
+                throw; // Re-throw the exception to be handled at a higher level
+            }
+            catch (Exception ex)
+            {
+                // Handle other exceptions that might occur during the adding process
+                // You can log the exception or perform any other necessary actions
+                throw; // Re-throw the exception to be handled at a higher level
+            }
         }
 
-        public async Task UpdateAsync(T entity)
+        //public async Task UpdateAsync(T entity)
+        //{
+        //    _dbSet.Attach(entity);
+        //    _context.Entry(entity).State = EntityState.Modified;
+        //    await _context.SaveChangesAsync();
+        //}
+        public async Task<T> UpdateAsync(T entity)
         {
-            _dbSet.Attach(entity);
-            _context.Entry(entity).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
+            try
+            {
+                _dbSet.Attach(entity);
+                _context.Entry(entity).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
+
+                return entity; // Return the updated entity
+            }
+            catch (DbUpdateException ex)
+            {
+                // Handle specific database update exception, if needed
+                // You can log the exception or perform any other necessary actions
+                throw; // Re-throw the exception to be handled at a higher level
+            }
+            catch (Exception ex)
+            {
+                // Handle other exceptions that might occur during the update process
+                // You can log the exception or perform any other necessary actions
+                throw; // Re-throw the exception to be handled at a higher level
+            }
         }
 
         public async Task DeleteAsync(long Id)
