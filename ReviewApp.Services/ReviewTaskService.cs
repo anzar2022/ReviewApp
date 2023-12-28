@@ -88,6 +88,19 @@ namespace ReviewApp.Services
             }
             return oldTask;
         }
+        public async Task<ReviewTask> UpdateReviewTaskCancelAsync(long Id)
+        {
+            var oldTask = await _repository.GetByIdAsync(Id);
+            if (oldTask != null)
+            {
+                oldTask.TaskCompleteDate = DateOnly.MinValue;
+                oldTask.IsTaskCompleteDate = false;
+                oldTask.TaskStartDate = DateOnly.MinValue;
+                oldTask.IsTaskStartDate = false;
+                await _repository.UpdateAsync(oldTask);
+            }
+            return oldTask;
+        }
 
     }
 }
