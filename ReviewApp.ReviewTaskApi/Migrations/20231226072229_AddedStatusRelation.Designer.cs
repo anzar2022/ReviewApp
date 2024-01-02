@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ReviewApp.Data;
 
@@ -11,9 +12,11 @@ using ReviewApp.Data;
 namespace ReviewApp.ReviewTaskApi.Migrations
 {
     [DbContext(typeof(ReviewAppDbContext))]
-    partial class ReviewAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231226072229_AddedStatusRelation")]
+    partial class AddedStatusRelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,12 +63,6 @@ namespace ReviewApp.ReviewTaskApi.Migrations
 
                     b.Property<double>("EmployeeRating")
                         .HasColumnType("float");
-
-                    b.Property<bool>("IsTaskCompleteDate")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsTaskStartDate")
-                        .HasColumnType("bit");
 
                     b.Property<string>("ManagerComment")
                         .IsRequired()
@@ -117,18 +114,11 @@ namespace ReviewApp.ReviewTaskApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("StatusCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("StatusName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("StatusCode")
-                        .IsUnique();
 
                     b.ToTable("Statuses");
                 });

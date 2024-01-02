@@ -3,6 +3,7 @@ using ReviewApp.Data;
 using ReviewApp.IRepositories;
 using ReviewApp.IServices;
 using ReviewApp.Repositories;
+using ReviewApp.ReviewTaskApi;
 using ReviewApp.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +23,11 @@ builder.Services.AddScoped<IStatusService, StatusService>();
 builder.Services.AddScoped<IQuarterRepository, QuarterRepository>();
 builder.Services.AddScoped<IReviewTaskRepository, ReviewTaskRepository>();
 builder.Services.AddScoped<IStatusRepository, StatusRepository>();
+
+builder.Services.Configure<RouteOptions>(options =>
+{
+    options.ConstraintMap.Add("DateOnly", typeof(DateOnlyRouteConstraint));
+});
 
 builder.Services.AddCors(options =>
 {
