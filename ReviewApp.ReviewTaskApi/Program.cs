@@ -1,7 +1,10 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using ReviewApp.Data;
 using ReviewApp.IRepositories;
 using ReviewApp.IServices;
+using ReviewApp.Model;
 using ReviewApp.Repositories;
 using ReviewApp.ReviewTaskApi;
 using ReviewApp.Services;
@@ -11,6 +14,9 @@ var builder = WebApplication.CreateBuilder(args);
 var configuratoin = builder.Configuration;
 
 var connectionString = configuratoin.GetConnectionString("DefaultConnection");
+var jwtSettingsSection = configuratoin.GetSection("JwtSettings");
+
+builder.Services.Configure<JwtSettings>(jwtSettingsSection);
 
 builder.Services.AddDbContext<ReviewAppDbContext>(options => options.UseSqlServer(connectionString, b => b.MigrationsAssembly("ReviewApp.ReviewTaskApi")));
 builder.Services.AddControllers();
@@ -26,6 +32,15 @@ builder.Services.AddScoped<IStatusRepository, StatusRepository>();
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
+
+
+builder.Services.AddScoped<IAuthService, AuthService>();
+
+builder.Services.AddSingleton(provider => provider.GetRequiredService<IOptions<JwtSettings>>().Value);
+//builder.Services.AddScoped<JwtSettings>();
+
+//builder.Services.AddScoped<IJwtService, JwtService>();
+
 
 builder.Services.Configure<RouteOptions>(options =>
 {
