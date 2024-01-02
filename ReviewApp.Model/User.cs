@@ -21,7 +21,7 @@ namespace ReviewApp.Model
         [Required(ErrorMessage = "Enter password")]
         public string Password { get; set; } =  string.Empty;
         public bool IsActive { get; set; } = false;
-        public string RefreshToken { get; set; }  // Field to store the refresh token
+        public string? RefreshToken { get; set; }  // Field to store the refresh token
         public DateTime RefreshTokenExpiryDate { get; set; } // Field to store the refresh token expiration date
     }
 }
