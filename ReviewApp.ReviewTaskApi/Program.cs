@@ -24,6 +24,9 @@ builder.Services.AddScoped<IQuarterRepository, QuarterRepository>();
 builder.Services.AddScoped<IReviewTaskRepository, ReviewTaskRepository>();
 builder.Services.AddScoped<IStatusRepository, StatusRepository>();
 
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+
 builder.Services.Configure<RouteOptions>(options =>
 {
     options.ConstraintMap.Add("DateOnly", typeof(DateOnlyRouteConstraint));
