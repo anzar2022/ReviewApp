@@ -5,9 +5,13 @@ namespace ReviewApp.Data
 {
     public class ReviewAppDbContext : DbContext
     {
-        public ReviewAppDbContext(DbContextOptions options) : base(options)
-        {
-        }
+        //public ReviewAppDbContext(DbContextOptions options) : base(options)
+        //{
+        //}
+
+        public ReviewAppDbContext(DbContextOptions<ReviewAppDbContext> options)
+    : base(options)
+        { }
 
         public DbSet<ReviewTask> ReviewTasks { get; set; }
         public DbSet<Quarter>  Quarters {  get; set; }

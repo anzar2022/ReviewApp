@@ -1,4 +1,5 @@
-﻿using ReviewApp.IRepositories;
+﻿using ReviewApp.DTO;
+using ReviewApp.IRepositories;
 using ReviewApp.IServices;
 using ReviewApp.Model;
 using System;
@@ -47,6 +48,11 @@ namespace ReviewApp.Services
             }
             return user;
           
+        }
+
+        public async Task<User> GetUserLogin(LoginDto loginDto)
+        {
+            return await _userRepository.GetUserLogin(loginDto.EmailAddress, loginDto.Password);
         }
     }
 }

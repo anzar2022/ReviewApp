@@ -1,4 +1,5 @@
-﻿using ReviewApp.Model;
+﻿using ReviewApp.DTO;
+using ReviewApp.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace ReviewApp.IServices
          Task<bool> DeleteUser(int Id);
          Task<User> GetUserById(int Id);
          Task<IEnumerable<User>> GetUsers();
+        Task<User> GetUserLogin(LoginDto loginDto);
 
     }
 }
