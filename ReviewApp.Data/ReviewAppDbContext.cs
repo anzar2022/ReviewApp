@@ -12,5 +12,6 @@ namespace ReviewApp.Data
         public DbSet<ReviewTask> ReviewTasks { get; set; }
         public DbSet<Quarter>  Quarters {  get; set; }
         public DbSet<Status> Statuses { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }

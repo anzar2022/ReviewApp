@@ -43,13 +43,13 @@ namespace ReviewApp.Repositories
 
                 return entity; // Return the added entity
             }
-            catch (DbUpdateException ex)
+            catch (DbUpdateException)
             {
                 // Handle specific database update exception, if needed
                 // You can log the exception or perform any other necessary actions
                 throw; // Re-throw the exception to be handled at a higher level
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // Handle other exceptions that might occur during the adding process
                 // You can log the exception or perform any other necessary actions
@@ -87,14 +87,17 @@ namespace ReviewApp.Repositories
             }
         }
 
-        public async Task DeleteAsync(long Id)
+        public async Task<bool> DeleteAsync(long Id)
         {
             var entity = await _dbSet.FindAsync(Id);
             if (entity != null)
             {
                 _dbSet.Remove(entity);
                 await _context.SaveChangesAsync();
+
+                return true;
             }
+            return false;
         }
     }
 }
