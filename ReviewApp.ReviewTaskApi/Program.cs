@@ -25,7 +25,7 @@ builder.Services.AddScoped<IReviewTaskRepository, ReviewTaskRepository>();
 builder.Services.AddScoped<IStatusRepository, StatusRepository>();
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.Configure<RouteOptions>(options =>
 {
