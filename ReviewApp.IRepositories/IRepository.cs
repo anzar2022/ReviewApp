@@ -13,6 +13,6 @@ namespace ReviewApp.IRepositories
         Task<IEnumerable<T>> GetAllAsync();
         Task<T> AddAsync(T entity);
         Task<T> UpdateAsync(T entity);
-        Task DeleteAsync(long Id);
+        Task<bool> DeleteAsync(long Id);
     }
 }
