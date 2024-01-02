@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 
 namespace ReviewApp.IRepositories
 {
-    public interface IUserRepository:IRepository<User>
+    public interface IUserRepository : IRepository<User>
     {
+       Task<User> GetUserLogin(string emailAddress, string password);
+        Task<User> GetUserByRefreshTokenAsync(string refreshToken);
     }
 }
