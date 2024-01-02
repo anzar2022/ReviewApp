@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ReviewApp.Data;
 using ReviewApp.IRepositories;
 using ReviewApp.Model;
 using System;
@@ -11,7 +12,7 @@ namespace ReviewApp.Repositories
 {
     public class UserRepository : Repository<User>, IUserRepository
     {
-        public UserRepository(DbContext context) : base(context)
+        public UserRepository(ReviewAppDbContext context) : base(context)
         {
         }
     }
