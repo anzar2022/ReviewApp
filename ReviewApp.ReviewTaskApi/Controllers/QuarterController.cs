@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ReviewApp.IServices;
 using ReviewApp.Model;
@@ -7,6 +8,7 @@ namespace ReviewApp.ReviewTaskApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class QuarterController : ControllerBase
     {
         private readonly IQuarterService _quarterService;
