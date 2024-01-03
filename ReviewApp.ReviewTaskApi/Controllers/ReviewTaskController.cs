@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ReviewApp.DTO;
 using ReviewApp.IServices;
@@ -9,6 +10,7 @@ namespace ReviewApp.ReviewTaskApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ReviewTaskController : ControllerBase
     {
         private readonly IReviewTaskService _reviewTaskService;
