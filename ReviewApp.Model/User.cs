@@ -15,7 +15,7 @@ namespace ReviewApp.Model
     public class User
     {
         [Key]
-        public int UserId {  get; set; }
+        public long UserId {  get; set; }
         [Required(ErrorMessage = "Enter email address")]
         public string EmailAddress { get; set; } =string.Empty;
         [Required(ErrorMessage = "Enter password")]

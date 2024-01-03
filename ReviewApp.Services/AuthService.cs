@@ -25,7 +25,7 @@ namespace ReviewApp.Services
             _jwtSettings = jwtSettings;
            
         }
-        public async Task<(string AccessToken, string RefreshToken)> GenerateJwtToken(string EmailAddress, int UserId)
+        public async Task<(string AccessToken, string RefreshToken)> GenerateJwtToken(string EmailAddress, long UserId)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_jwtSettings.SecretKey); // Replace with your secret key
