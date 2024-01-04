@@ -1,4 +1,5 @@
-﻿using ReviewApp.Model;
+﻿using ReviewApp.DTO;
+using ReviewApp.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace ReviewApp.IServices
     {
         Task<ReviewTask> GetReviewTaskByIdAsync(long Id);
         Task<IEnumerable<ReviewTask>> GetAllReviewTasksAsync();
-        Task AddReviewTaskAsync(ReviewTask task);
+        Task AddReviewTaskAsync(CreateReviewTaskDto task);
         Task UpdateReviewTaskAsync(long Id, ReviewTask task);
         Task DeleteReviewTaskAsync(long Id);
 
