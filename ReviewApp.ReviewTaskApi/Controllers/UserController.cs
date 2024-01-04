@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ReviewApp.DTO;
 using ReviewApp.IServices;
 using ReviewApp.Model;
 
@@ -29,7 +30,7 @@ namespace ReviewApp.ReviewTaskApi.Controllers
 
         // GET api/<UserController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> Get(int Id)
+        public async Task<ActionResult<User>> Get(long Id)
         {
             var user = await _userService.GetUserById(Id);
 
@@ -38,16 +39,16 @@ namespace ReviewApp.ReviewTaskApi.Controllers
 
         // POST api/<UserController>
         [HttpPost]
-        public async Task<ActionResult<User>> Post([FromBody] User user)
+        public async Task<ActionResult<User>> Post([FromBody] CreateUserDto userDto)
         {
-            var newUser = await _userService.CreateUser(user);
+            var newUser = await _userService.CreateUser(userDto);
 
             return Ok(newUser);
         }
 
         // PUT api/<UserController>/5
         [HttpPut("{Id}")]
-        public async Task<ActionResult<User>> Put(int Id, [FromBody] User  user)
+        public async Task<ActionResult<User>> Put(long Id, [FromBody] User  user)
         {
             var updated = await _userService.UpdateUser(Id, user);
 
@@ -58,7 +59,7 @@ namespace ReviewApp.ReviewTaskApi.Controllers
 
         // DELETE api/<UserController>/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<bool>> Delete(int Id)
+        public async Task<ActionResult<bool>> Delete(long Id)
         {
             var isDeleted = await _userService.DeleteUser(Id);
             

@@ -10,10 +10,10 @@ namespace ReviewApp.IServices
 {
     public interface IUserService
     {
-         Task<User> CreateUser(User user);
-         Task<User> UpdateUser(int Id, User user);
-         Task<bool> DeleteUser(int Id);
-         Task<User> GetUserById(int Id);
+         Task<User> CreateUser(CreateUserDto userDto);
+         Task<User> UpdateUser(long Id, User user);
+         Task<bool> DeleteUser(long Id);
+         Task<User> GetUserById(long Id);
          Task<IEnumerable<User>> GetUsers();
         Task<User> GetUserLogin(LoginDto loginDto);
 

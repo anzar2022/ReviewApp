@@ -23,5 +23,8 @@ namespace ReviewApp.Model
         public bool IsActive { get; set; } = false;
         public string? RefreshToken { get; set; }  // Field to store the refresh token
         public DateTime RefreshTokenExpiryDate { get; set; } // Field to store the refresh token expiration date
+        [ForeignKey("UserRole")]
+        public long UserRoleId { get; set; }
+        public UserRole Role { get; set; }
     }
 }
