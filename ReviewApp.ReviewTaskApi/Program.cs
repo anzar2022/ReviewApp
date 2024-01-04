@@ -22,7 +22,16 @@ var jwtSettingsSection = configuratoin.GetSection("JwtSettings");
 
 builder.Services.Configure<JwtSettings>(jwtSettingsSection);
 
-builder.Services.AddDbContext<ReviewAppDbContext>(options => options.UseSqlServer(connectionString, b => b.MigrationsAssembly("ReviewApp.ReviewTaskApi")));
+builder.Services.AddDbContext<ReviewAppDbContext>(options =>
+{
+    options.UseSqlServer(connectionString, b => b.MigrationsAssembly("ReviewApp.ReviewTaskApi"));
+    options.UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()));
+    options.EnableSensitiveDataLogging();
+});
+
+
+
+
 builder.Services.AddControllers();
 
 builder.Services.AddScoped<IQuarterService, QuarterService>();
