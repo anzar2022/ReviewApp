@@ -41,7 +41,7 @@ namespace ReviewApp.ReviewTaskApi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ReviewTask>> CreateReviewTask([FromBody] ReviewTask task)
+        public async Task<ActionResult<ReviewTask>> CreateReviewTask([FromBody] CreateReviewTaskDto task)
         {
             if (task == null)
             {

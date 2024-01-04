@@ -1,4 +1,5 @@
-﻿using ReviewApp.IRepositories;
+﻿using ReviewApp.DTO;
+using ReviewApp.IRepositories;
 using ReviewApp.IServices;
 using ReviewApp.Model;
 using System;
@@ -28,9 +29,32 @@ namespace ReviewApp.Services
             return await _repository.GetAllAsyncWithForeignKey();
         }
 
-        public async Task AddReviewTaskAsync(ReviewTask task)
+        public async Task AddReviewTaskAsync(CreateReviewTaskDto taskDto)
         {
-            await _repository.AddAsync(task);
+
+            var reviewTask = new ReviewTask()
+            {
+                EmployeeComment = taskDto.EmployeeComment,
+                EmployeeRating = taskDto.EmployeeRating,
+                IsTaskCompleteDate = taskDto.IsTaskCompleteDate,
+                IsTaskStartDate = taskDto.IsTaskStartDate,
+                ManagerComment = taskDto.ManagerComment,
+                ManagerRating = taskDto.ManagerRating,  
+                PercentageComplete = taskDto.PercentageComplete,QuarterId = taskDto.QuarterId,
+                StatusId = taskDto.StatusId,
+                TaskDescription = taskDto.TaskDescription,
+                TaskCompleteDate = taskDto.TaskCompleteDate,
+                TaskStartDate = taskDto.TaskStartDate,
+                TaskTitle = taskDto.TaskTitle,
+                UserId = taskDto.UserId,
+                Weightage= taskDto.Weightage,
+                
+
+
+
+            };
+
+            await _repository.AddAsync(reviewTask);
         }
 
         public async Task UpdateReviewTaskAsync(long Id, ReviewTask task)
