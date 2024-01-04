@@ -48,7 +48,7 @@ namespace ReviewApp.ReviewTaskApi.Controllers
 
         // PUT api/<UserController>/5
         [HttpPut("{Id}")]
-        public async Task<ActionResult<User>> Put(long Id, [FromBody] User  user)
+        public async Task<ActionResult<User>> Put(long Id, [FromBody] UpdateUserDto  user)
         {
             var updated = await _userService.UpdateUser(Id, user);
 

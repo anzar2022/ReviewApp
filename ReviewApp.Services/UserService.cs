@@ -18,7 +18,7 @@ namespace ReviewApp.Services
         }
         public async Task<User> CreateUser(CreateUserDto userDto)
         {
-          return await _userRepository.AddAsync(new User() { EmailAddress = userDto.EmailAddress, Password = userDto.Password, IsActive = userDto.IsActive });
+          return await _userRepository.AddAsync(new User() { EmailAddress = userDto.EmailAddress, Password = userDto.Password, IsActive = userDto.IsActive, UserRoleId = userDto.UserRoleId });
         }
 
         public async Task<bool> DeleteUser(long Id)
@@ -36,17 +36,20 @@ namespace ReviewApp.Services
             return _userRepository.GetByIdAsync(Id);
         }
 
-        public async Task<User> UpdateUser(long Id,User user)
+        public async Task<User> UpdateUser(long Id, UpdateUserDto userDto)
         {
             var oldUser = await   _userRepository.GetByIdAsync(Id);
             if (oldUser !=null)
             {
-                oldUser.EmailAddress = user.EmailAddress;
-                oldUser.IsActive = user.IsActive;
+                oldUser.EmailAddress = userDto.EmailAddress;
+                oldUser.IsActive = userDto.IsActive;
+                oldUser.UserRoleId = userDto.UserRoleId;
 
                 return await _userRepository.UpdateAsync(oldUser);
+                return oldUser;
             }
-            return user;
+            return null;
+
           
         }
 
