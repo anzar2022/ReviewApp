@@ -29,7 +29,7 @@ builder.Services.AddDbContext<ReviewAppDbContext>(options =>
     options.EnableSensitiveDataLogging();
 });
 
-
+/*Test*/
 
 
 builder.Services.AddControllers();
