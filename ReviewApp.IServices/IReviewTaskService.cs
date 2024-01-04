@@ -13,7 +13,7 @@ namespace ReviewApp.IServices
         Task<ReviewTask> GetReviewTaskByIdAsync(long Id);
         Task<IEnumerable<ReviewTask>> GetAllReviewTasksAsync();
         Task AddReviewTaskAsync(CreateReviewTaskDto task);
-        Task UpdateReviewTaskAsync(long Id, ReviewTask task);
+        Task UpdateReviewTaskAsync(long Id, UpdateReviewTaskDto taskDto);
         Task DeleteReviewTaskAsync(long Id);
 
         Task<int> GetWeightageSumByQuarterIdAsync(int quarterId);
