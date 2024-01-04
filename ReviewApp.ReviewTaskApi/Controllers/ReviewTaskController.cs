@@ -53,9 +53,9 @@ namespace ReviewApp.ReviewTaskApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> UpdateReviewTask(long Id, [FromBody] ReviewTask task)
+        public async Task<ActionResult> UpdateReviewTask(long Id, [FromBody] UpdateReviewTaskDto taskDto)
         {
-            if (Id != task.Id)
+            if (Id != taskDto.Id)
             {
                 return BadRequest();
             }
@@ -66,7 +66,7 @@ namespace ReviewApp.ReviewTaskApi.Controllers
                 return NotFound();
             }
 
-            await _reviewTaskService.UpdateReviewTaskAsync(Id,task);
+            await _reviewTaskService.UpdateReviewTaskAsync(Id, taskDto);
             return Ok(existingTask);
         }
 

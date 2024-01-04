@@ -57,21 +57,26 @@ namespace ReviewApp.Services
             await _repository.AddAsync(reviewTask);
         }
 
-        public async Task UpdateReviewTaskAsync(long Id, ReviewTask task)
+        public async Task UpdateReviewTaskAsync(long Id, UpdateReviewTaskDto taskDto)
         {
 
             var existingTask = await _repository.GetByIdAsync(Id);
             if (existingTask != null)
             {
-                existingTask.EmployeeComment = task.EmployeeComment;
-                existingTask.ManagerComment = task.ManagerComment;
-                existingTask.TaskTitle = task.TaskTitle;
-                existingTask.TaskDescription = task.TaskDescription;
-                existingTask.Weightage = task.Weightage;
-                existingTask.StatusId = task.StatusId;
-                existingTask.EmployeeRating = task.EmployeeRating;
-                existingTask.ManagerRating = task.ManagerRating;
-                existingTask.PercentageComplete = task.PercentageComplete;
+                existingTask.EmployeeComment = taskDto.EmployeeComment;
+                existingTask.ManagerComment = taskDto.ManagerComment;
+                existingTask.TaskTitle = taskDto.TaskTitle;
+                existingTask.TaskDescription = taskDto.TaskDescription;
+                existingTask.Weightage = taskDto.Weightage;
+                existingTask.StatusId = taskDto.StatusId;
+                existingTask.EmployeeRating = taskDto.EmployeeRating;
+                existingTask.ManagerRating = taskDto.ManagerRating;
+                existingTask.PercentageComplete = taskDto.PercentageComplete;
+                existingTask.StatusId = taskDto.StatusId;
+                existingTask.UserId = taskDto.UserId;
+                existingTask.QuarterId = taskDto.QuarterId;
+               
+
             }
 
             await _repository.UpdateAsync(existingTask);
