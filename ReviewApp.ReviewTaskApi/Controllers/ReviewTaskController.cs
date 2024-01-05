@@ -92,7 +92,7 @@ namespace ReviewApp.ReviewTaskApi.Controllers
                 return StatusCode(500, "An error occurred while processing the request.");
             }
         }
-        [Route("GetWeightageSumByQuarterId/{Id:int}")]
+        [HttpGet("GetWeightageSumByQuarterId/{Id:int}")]
         public async Task<int> GetWeightageSumByQuarterIdAsync(int Id)
         {
             try
