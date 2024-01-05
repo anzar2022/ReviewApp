@@ -95,7 +95,9 @@ builder.Services.AddCors(options =>
 
 
 var app = builder.Build();
-app.MapControllers();
+app.UseAuthentication();
+app.UseAuthorization();
 app.UseCors("EnableCORS");
+app.MapControllers();
 app.MapGet("/", () => "Hello World!");
 app.Run();
