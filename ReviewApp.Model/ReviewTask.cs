@@ -31,6 +31,9 @@ namespace ReviewApp.Model
         public virtual Quarter? Quarter { get; set; }
         public int PercentageComplete { get; set; } =0;
 
+        [ForeignKey("User")]
+        public long UserId { get; set; }
+        public virtual User User { get; set; }  
 
     }
 }

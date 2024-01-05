@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ReviewApp.Data;
 
@@ -11,9 +12,11 @@ using ReviewApp.Data;
 namespace ReviewApp.ReviewTaskApi.Migrations
 {
     [DbContext(typeof(ReviewAppDbContext))]
-    partial class ReviewAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240104062944_AddRelationUserANDUserRole")]
+    partial class AddRelationUserANDUserRole
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -97,9 +100,6 @@ namespace ReviewApp.ReviewTaskApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
-
                     b.Property<int>("Weightage")
                         .HasColumnType("int");
 
@@ -108,8 +108,6 @@ namespace ReviewApp.ReviewTaskApi.Migrations
                     b.HasIndex("QuarterId");
 
                     b.HasIndex("StatusId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("ReviewTasks");
                 });
@@ -212,17 +210,9 @@ namespace ReviewApp.ReviewTaskApi.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ReviewApp.Model.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Quarter");
 
                     b.Navigation("Status");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("ReviewApp.Model.User", b =>

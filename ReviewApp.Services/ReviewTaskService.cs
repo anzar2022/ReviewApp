@@ -1,9 +1,11 @@
-﻿using ReviewApp.IRepositories;
+﻿using ReviewApp.DTO;
+using ReviewApp.IRepositories;
 using ReviewApp.IServices;
 using ReviewApp.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -28,26 +30,54 @@ namespace ReviewApp.Services
             return await _repository.GetAllAsyncWithForeignKey();
         }
 
-        public async Task AddReviewTaskAsync(ReviewTask task)
+        public async Task AddReviewTaskAsync(CreateReviewTaskDto taskDto)
         {
-            await _repository.AddAsync(task);
+
+            var reviewTask = new ReviewTask()
+            {
+                EmployeeComment = taskDto.EmployeeComment,
+                EmployeeRating = taskDto.EmployeeRating,
+                IsTaskCompleteDate = taskDto.IsTaskCompleteDate,
+                IsTaskStartDate = taskDto.IsTaskStartDate,
+                ManagerComment = taskDto.ManagerComment,
+                ManagerRating = taskDto.ManagerRating,  
+                PercentageComplete = taskDto.PercentageComplete,QuarterId = taskDto.QuarterId,
+                StatusId = taskDto.StatusId,
+                TaskDescription = taskDto.TaskDescription,
+                TaskCompleteDate = taskDto.TaskCompleteDate,
+                TaskStartDate = taskDto.TaskStartDate,
+                TaskTitle = taskDto.TaskTitle,
+                UserId = taskDto.UserId,
+                Weightage= taskDto.Weightage,
+                
+
+
+
+            };
+
+            await _repository.AddAsync(reviewTask);
         }
 
-        public async Task UpdateReviewTaskAsync(long Id, ReviewTask task)
+        public async Task UpdateReviewTaskAsync(long Id, UpdateReviewTaskDto taskDto)
         {
 
             var existingTask = await _repository.GetByIdAsync(Id);
             if (existingTask != null)
             {
-                existingTask.EmployeeComment = task.EmployeeComment;
-                existingTask.ManagerComment = task.ManagerComment;
-                existingTask.TaskTitle = task.TaskTitle;
-                existingTask.TaskDescription = task.TaskDescription;
-                existingTask.Weightage = task.Weightage;
-                existingTask.StatusId = task.StatusId;
-                existingTask.EmployeeRating = task.EmployeeRating;
-                existingTask.ManagerRating = task.ManagerRating;
-                existingTask.PercentageComplete = task.PercentageComplete;
+                existingTask.EmployeeComment = taskDto.EmployeeComment;
+                existingTask.ManagerComment = taskDto.ManagerComment;
+                existingTask.TaskTitle = taskDto.TaskTitle;
+                existingTask.TaskDescription = taskDto.TaskDescription;
+                existingTask.Weightage = taskDto.Weightage;
+                existingTask.StatusId = taskDto.StatusId;
+                existingTask.EmployeeRating = taskDto.EmployeeRating;
+                existingTask.ManagerRating = taskDto.ManagerRating;
+                existingTask.PercentageComplete = taskDto.PercentageComplete;
+                existingTask.StatusId = taskDto.StatusId;
+                existingTask.UserId = taskDto.UserId;
+                existingTask.QuarterId = taskDto.QuarterId;
+               
+
             }
 
             await _repository.UpdateAsync(existingTask);
@@ -99,8 +129,19 @@ namespace ReviewApp.Services
                 oldTask.IsTaskStartDate = false;
                 await _repository.UpdateAsync(oldTask);
             }
+            else {
+                return null;
+            }
             return oldTask;
         }
 
+        public Task<IEnumerable<ReviewTask>> GetReviewTasksByUserIdAsync(long userId)
+        {
+            Expression<Func<ReviewTask, bool>> filterExpression = entity => entity.UserId == userId;
+
+            var reviewTasks = _repository.FilterAsync(filterExpression);
+
+            return reviewTasks;
+        }
     }
 }

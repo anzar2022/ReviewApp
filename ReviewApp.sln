@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReviewApp.DTO", "ReviewApp.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReviewApp.Services", "ReviewApp.Services\ReviewApp.Services.csproj", "{7CBA70AE-1DDA-4BCF-A089-375BAD30157C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReviewApp.UnitTest", "ReviewApp.UnitTest\ReviewApp.UnitTest.csproj", "{149EA629-E015-453E-979E-AA434B683CFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReviewApp.UnitTest", "ReviewApp.UnitTest\ReviewApp.UnitTest.csproj", "{149EA629-E015-453E-979E-AA434B683CFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReviewApp.ErrorHandling", "ReviewApp.ErrorHandling\ReviewApp.ErrorHandling.csproj", "{FE76CF4D-77D8-4D34-BC0F-072D94024FC5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{149EA629-E015-453E-979E-AA434B683CFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{149EA629-E015-453E-979E-AA434B683CFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{149EA629-E015-453E-979E-AA434B683CFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE76CF4D-77D8-4D34-BC0F-072D94024FC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE76CF4D-77D8-4D34-BC0F-072D94024FC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE76CF4D-77D8-4D34-BC0F-072D94024FC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE76CF4D-77D8-4D34-BC0F-072D94024FC5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

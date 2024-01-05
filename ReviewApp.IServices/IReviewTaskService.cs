@@ -1,4 +1,5 @@
-﻿using ReviewApp.Model;
+﻿using ReviewApp.DTO;
+using ReviewApp.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,8 @@ namespace ReviewApp.IServices
     {
         Task<ReviewTask> GetReviewTaskByIdAsync(long Id);
         Task<IEnumerable<ReviewTask>> GetAllReviewTasksAsync();
-        Task AddReviewTaskAsync(ReviewTask task);
-        Task UpdateReviewTaskAsync(long Id, ReviewTask task);
+        Task AddReviewTaskAsync(CreateReviewTaskDto task);
+        Task UpdateReviewTaskAsync(long Id, UpdateReviewTaskDto taskDto);
         Task DeleteReviewTaskAsync(long Id);
 
         Task<int> GetWeightageSumByQuarterIdAsync(int quarterId);
@@ -21,5 +22,6 @@ namespace ReviewApp.IServices
 
         Task<ReviewTask> UpdateReviewTaskCompleteDateAsync(long Id, DateOnly TaskCompleteDate);
         Task<ReviewTask> UpdateReviewTaskCancelAsync(long Id);
+        Task<IEnumerable< ReviewTask>> GetReviewTasksByUserIdAsync(long userId);
     }
 }

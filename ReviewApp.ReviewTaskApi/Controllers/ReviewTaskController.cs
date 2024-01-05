@@ -41,7 +41,7 @@ namespace ReviewApp.ReviewTaskApi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ReviewTask>> CreateReviewTask([FromBody] ReviewTask task)
+        public async Task<ActionResult<ReviewTask>> CreateReviewTask([FromBody] CreateReviewTaskDto task)
         {
             if (task == null)
             {
@@ -53,9 +53,9 @@ namespace ReviewApp.ReviewTaskApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> UpdateReviewTask(long Id, [FromBody] ReviewTask task)
+        public async Task<ActionResult> UpdateReviewTask(long Id, [FromBody] UpdateReviewTaskDto taskDto)
         {
-            if (Id != task.Id)
+            if (Id != taskDto.Id)
             {
                 return BadRequest();
             }
@@ -66,7 +66,7 @@ namespace ReviewApp.ReviewTaskApi.Controllers
                 return NotFound();
             }
 
-            await _reviewTaskService.UpdateReviewTaskAsync(Id,task);
+            await _reviewTaskService.UpdateReviewTaskAsync(Id, taskDto);
             return Ok(existingTask);
         }
 
@@ -92,7 +92,7 @@ namespace ReviewApp.ReviewTaskApi.Controllers
                 return StatusCode(500, "An error occurred while processing the request.");
             }
         }
-        [Route("GetWeightageSumByQuarterId/{Id:int}")]
+        [HttpGet("GetWeightageSumByQuarterId/{Id:int}")]
         public async Task<int> GetWeightageSumByQuarterIdAsync(int Id)
         {
             try
@@ -183,6 +183,28 @@ namespace ReviewApp.ReviewTaskApi.Controllers
                 // Log the exception or perform necessary actions
                 // For demonstration purposes, returning 0 as a default value in case of an exception
                 throw;
+            }
+        }
+
+        [HttpGet("GetReviewTasksByUserIdAsync/{userId:long}")]
+        public async Task<ActionResult<IEnumerable<ReviewTask>>> GetReviewTasksByUserIdAsync(long userId)
+        {
+            try
+            {
+                var tasks = await _reviewTaskService.GetReviewTasksByUserIdAsync(userId);
+
+                if (tasks == null || !tasks.Any())
+                {
+                    return NotFound();
+                }
+
+                return Ok(tasks);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or perform necessary actions
+                // For demonstration purposes, returning a 500 Internal Server Error response
+                return StatusCode(500, ex.Message);
             }
         }
 
