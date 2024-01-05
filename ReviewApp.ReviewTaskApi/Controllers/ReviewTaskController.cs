@@ -186,5 +186,27 @@ namespace ReviewApp.ReviewTaskApi.Controllers
             }
         }
 
+        [HttpGet("GetReviewTasksByUserIdAsync/{userId:long}")]
+        public async Task<ActionResult<IEnumerable<ReviewTask>>> GetReviewTasksByUserIdAsync(long userId)
+        {
+            try
+            {
+                var tasks = await _reviewTaskService.GetReviewTasksByUserIdAsync(userId);
+
+                if (tasks == null || !tasks.Any())
+                {
+                    return NotFound();
+                }
+
+                return Ok(tasks);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or perform necessary actions
+                // For demonstration purposes, returning a 500 Internal Server Error response
+                return StatusCode(500, "An error occurred while processing the request.");
+            }
+        }
+
     }
 }

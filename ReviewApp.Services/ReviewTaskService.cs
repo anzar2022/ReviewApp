@@ -5,6 +5,7 @@ using ReviewApp.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -131,5 +132,13 @@ namespace ReviewApp.Services
             return oldTask;
         }
 
+        public Task<IEnumerable<ReviewTask>> GetReviewTasksByUserIdAsync(long userId)
+        {
+            Expression<Func<ReviewTask, bool>> filterExpression = entity => entity.UserId == userId;
+
+            var reviewTasks = _repository.FilterAsync(filterExpression);
+
+            return reviewTasks;
+        }
     }
 }

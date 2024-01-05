@@ -22,5 +22,6 @@ namespace ReviewApp.IServices
 
         Task<ReviewTask> UpdateReviewTaskCompleteDateAsync(long Id, DateOnly TaskCompleteDate);
         Task<ReviewTask> UpdateReviewTaskCancelAsync(long Id);
+        Task<IEnumerable< ReviewTask>> GetReviewTasksByUserIdAsync(long userId);
     }
 }

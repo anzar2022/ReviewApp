@@ -3,6 +3,7 @@ using ReviewApp.IRepositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -98,6 +99,16 @@ namespace ReviewApp.Repositories
                 return true;
             }
             return false;
+        }
+
+        public async Task<IEnumerable<T>> FilterAsync(Expression<Func<T, bool>> filter)
+        {
+            return await _dbSet.Where(filter).ToListAsync();
+        }
+
+        public async Task<T> FilterSingleOrDefaultAsync(Expression<Func<T, bool>> filter)
+        {
+            return await _dbSet.SingleOrDefaultAsync(filter);
         }
     }
 }
