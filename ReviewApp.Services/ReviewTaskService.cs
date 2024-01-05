@@ -129,6 +129,9 @@ namespace ReviewApp.Services
                 oldTask.IsTaskStartDate = false;
                 await _repository.UpdateAsync(oldTask);
             }
+            else {
+                return null;
+            }
             return oldTask;
         }
 

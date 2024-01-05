@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ReviewApp.ErrorHandling;
 using ReviewApp.IRepositories;
 using System;
 using System.Collections.Generic;
@@ -22,11 +23,33 @@ namespace ReviewApp.Repositories
 
         public async Task<T> GetByIdAsync(long id)
         {
-            return await _dbSet.FindAsync(id);
+            T entity = await _dbSet.FindAsync(id);
+
+            if (entity == null)
+            {
+                // Handle the case where the entity with the given id is not found
+                // For example, you can throw a NotFoundException or handle it based on your application's logic
+                throw new NotFoundException($"Entity with ID '{id}' not found.");
+                // Or you can return null or any other default value based on your requirements
+                // return null;
+            }
+
+            return entity;
         }
         public async Task<T> GetByIdAsync<TId>(TId id)
         {
-            return await _dbSet.FindAsync(id);
+            T entity = await _dbSet.FindAsync(id);
+
+            if (entity == null)
+            {
+                // Handle the case where the entity with the given id is not found
+                // For example, you can throw a NotFoundException or handle it based on your application's logic
+                throw new NotFoundException($"Entity with ID '{id}' not found.");
+                // Or you can return null or any other default value based on your requirements
+                // return null;
+            }
+
+            return entity;
         }
 
 
