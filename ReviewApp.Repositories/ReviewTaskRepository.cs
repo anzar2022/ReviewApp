@@ -2,11 +2,6 @@
 using ReviewApp.Data;
 using ReviewApp.IRepositories;
 using ReviewApp.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReviewApp.Repositories
 {
@@ -20,7 +15,7 @@ namespace ReviewApp.Repositories
         public async Task<IEnumerable<ReviewTask>> GetAllAsyncWithQuarter()
         {
             return await _context.Set<ReviewTask>().Include(rt => rt.Quarter).ToListAsync();
-          
+
         }
 
         public async Task<IEnumerable<ReviewTask>> GetAllAsyncWithForeignKey()

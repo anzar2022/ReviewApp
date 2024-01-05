@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using ReviewApp.Data;
@@ -64,7 +62,7 @@ builder.Services.Configure<RouteOptions>(options =>
 
 
 builder.Services.AddAuthentication(options =>
-{ 
+{
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer(options =>
@@ -97,7 +95,9 @@ builder.Services.AddCors(options =>
 
 
 var app = builder.Build();
-app.MapControllers();
+app.UseAuthentication();
+app.UseAuthorization();
 app.UseCors("EnableCORS");
+app.MapControllers();
 app.MapGet("/", () => "Hello World!");
 app.Run();

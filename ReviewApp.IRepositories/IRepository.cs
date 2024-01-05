@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq.Expressions;
 
 namespace ReviewApp.IRepositories
 {
@@ -14,5 +10,8 @@ namespace ReviewApp.IRepositories
         Task<T> AddAsync(T entity);
         Task<T> UpdateAsync(T entity);
         Task<bool> DeleteAsync(long Id);
+
+        Task<IEnumerable<T>> FilterAsync(Expression<Func<T, bool>> filter);
+        Task<T> FilterSingleOrDefaultAsync(Expression<Func<T, bool>> filter);
     }
 }

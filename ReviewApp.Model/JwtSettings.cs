@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ReviewApp.Model
+﻿namespace ReviewApp.Model
 {
     public class JwtSettings
     {
@@ -12,6 +6,6 @@ namespace ReviewApp.Model
         public string Issuer { get; set; }
         public string Audience { get; set; }
         public int ExpirationHours { get; set; }
-        public int RefreshTokenExpiryDate { get; set;}
+        public int RefreshTokenExpiryDate { get; set; }
     }
 }

@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using ReviewApp.DTO;
 using ReviewApp.IServices;
-using ReviewApp.Model;
 
 namespace ReviewApp.ReviewTaskApi.Controllers
 {
@@ -13,7 +11,7 @@ namespace ReviewApp.ReviewTaskApi.Controllers
         private readonly IAuthService _authService;
         private readonly IUserService _userService;
 
-       public AuthController(IAuthService authService, IUserService userService)
+        public AuthController(IAuthService authService, IUserService userService)
         {
             _authService = authService;
             _userService = userService;
@@ -22,7 +20,7 @@ namespace ReviewApp.ReviewTaskApi.Controllers
         [HttpPost("login")]
         public async Task<ActionResult> Login(LoginDto loginDto)
         {
-           // var user = new User();
+            // var user = new User();
             var user = await _userService.GetUserLogin(loginDto);
             if (user == null)
             {

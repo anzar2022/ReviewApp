@@ -2,11 +2,7 @@
 using ReviewApp.IRepositories;
 using ReviewApp.IServices;
 using ReviewApp.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Linq.Expressions;
 
 namespace ReviewApp.Services
 {
@@ -39,16 +35,17 @@ namespace ReviewApp.Services
                 IsTaskCompleteDate = taskDto.IsTaskCompleteDate,
                 IsTaskStartDate = taskDto.IsTaskStartDate,
                 ManagerComment = taskDto.ManagerComment,
-                ManagerRating = taskDto.ManagerRating,  
-                PercentageComplete = taskDto.PercentageComplete,QuarterId = taskDto.QuarterId,
+                ManagerRating = taskDto.ManagerRating,
+                PercentageComplete = taskDto.PercentageComplete,
+                QuarterId = taskDto.QuarterId,
                 StatusId = taskDto.StatusId,
                 TaskDescription = taskDto.TaskDescription,
                 TaskCompleteDate = taskDto.TaskCompleteDate,
                 TaskStartDate = taskDto.TaskStartDate,
                 TaskTitle = taskDto.TaskTitle,
                 UserId = taskDto.UserId,
-                Weightage= taskDto.Weightage,
-                
+                Weightage = taskDto.Weightage,
+
 
 
 
@@ -75,7 +72,7 @@ namespace ReviewApp.Services
                 existingTask.StatusId = taskDto.StatusId;
                 existingTask.UserId = taskDto.UserId;
                 existingTask.QuarterId = taskDto.QuarterId;
-               
+
 
             }
 
@@ -92,14 +89,14 @@ namespace ReviewApp.Services
             return _repository.GetWeightageSumByQuarterIdAsync(quarterId);
         }
 
-        public async Task<ReviewTask> UpdateReviewTaskStartDateAsync(long Id , DateOnly TaskStartDate)
+        public async Task<ReviewTask> UpdateReviewTaskStartDateAsync(long Id, DateOnly TaskStartDate)
         {
-            var oldTask  = await _repository.GetByIdAsync(Id);
+            var oldTask = await _repository.GetByIdAsync(Id);
             if (oldTask != null)
             {
-                oldTask.TaskStartDate =  TaskStartDate;
+                oldTask.TaskStartDate = TaskStartDate;
                 oldTask.IsTaskStartDate = true;
-                oldTask =  await _repository.UpdateAsync(oldTask);
+                oldTask = await _repository.UpdateAsync(oldTask);
             }
 
             return oldTask;
@@ -128,8 +125,20 @@ namespace ReviewApp.Services
                 oldTask.IsTaskStartDate = false;
                 await _repository.UpdateAsync(oldTask);
             }
+            else
+            {
+                return null;
+            }
             return oldTask;
         }
 
+        public Task<IEnumerable<ReviewTask>> GetReviewTasksByUserIdAsync(long userId)
+        {
+            Expression<Func<ReviewTask, bool>> filterExpression = entity => entity.UserId == userId;
+
+            var reviewTasks = _repository.FilterAsync(filterExpression);
+
+            return reviewTasks;
+        }
     }
 }

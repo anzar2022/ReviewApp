@@ -1,10 +1,5 @@
 ﻿using ReviewApp.DTO;
 using ReviewApp.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReviewApp.IServices
 {
@@ -22,5 +17,6 @@ namespace ReviewApp.IServices
 
         Task<ReviewTask> UpdateReviewTaskCompleteDateAsync(long Id, DateOnly TaskCompleteDate);
         Task<ReviewTask> UpdateReviewTaskCancelAsync(long Id);
+        Task<IEnumerable<ReviewTask>> GetReviewTasksByUserIdAsync(long userId);
     }
 }
