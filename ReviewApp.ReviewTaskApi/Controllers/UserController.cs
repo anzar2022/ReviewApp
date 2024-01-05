@@ -24,7 +24,7 @@ namespace ReviewApp.ReviewTaskApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> Get()
         {
-             var users =  await _userService.GetUsers();
+            var users = await _userService.GetUsers();
             return Ok(users);
         }
 
@@ -48,7 +48,7 @@ namespace ReviewApp.ReviewTaskApi.Controllers
 
         // PUT api/<UserController>/5
         [HttpPut("{Id}")]
-        public async Task<ActionResult<User>> Put(long Id, [FromBody] UpdateUserDto  user)
+        public async Task<ActionResult<User>> Put(long Id, [FromBody] UpdateUserDto user)
         {
             var updated = await _userService.UpdateUser(Id, user);
 
@@ -62,7 +62,7 @@ namespace ReviewApp.ReviewTaskApi.Controllers
         public async Task<ActionResult<bool>> Delete(long Id)
         {
             var isDeleted = await _userService.DeleteUser(Id);
-            
+
             return Ok(isDeleted);
         }
     }

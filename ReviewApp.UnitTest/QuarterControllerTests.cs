@@ -3,11 +3,6 @@ using Moq;
 using ReviewApp.IServices;
 using ReviewApp.Model;
 using ReviewApp.ReviewTaskApi.Controllers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReviewApp.UnitTest
 {
@@ -38,7 +33,7 @@ namespace ReviewApp.UnitTest
             // Arrange
             var mockService = new Mock<IQuarterService>();
             var controller = new QuarterController(mockService.Object);
-            var expectedQuarter = new Quarter { Id = 1,  QuarterCode = "Q1" }; // Provide a sample quarter for testing
+            var expectedQuarter = new Quarter { Id = 1, QuarterCode = "Q1" }; // Provide a sample quarter for testing
             const int existingId = 1;
 
             mockService.Setup(service => service.GetQuarterByIdAsync(existingId)).ReturnsAsync(expectedQuarter);

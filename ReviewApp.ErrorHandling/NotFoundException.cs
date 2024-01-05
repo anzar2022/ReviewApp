@@ -1,10 +1,8 @@
-﻿using System.Runtime.Serialization;
-
-namespace ReviewApp.ErrorHandling
+﻿namespace ReviewApp.ErrorHandling
 {
     public class NotFoundException : Exception
     {
-      
+
 
         public NotFoundException(string? message) : base(message)
         {

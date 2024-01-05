@@ -2,28 +2,24 @@
 using ReviewApp.IRepositories;
 using ReviewApp.IServices;
 using ReviewApp.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReviewApp.Services
 {
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
-        public UserService(IUserRepository userRepository) {
+        public UserService(IUserRepository userRepository)
+        {
             _userRepository = userRepository;
         }
         public async Task<User> CreateUser(CreateUserDto userDto)
         {
-          return await _userRepository.AddAsync(new User() { EmailAddress = userDto.EmailAddress, Password = userDto.Password, IsActive = userDto.IsActive, UserRoleId = userDto.UserRoleId });
+            return await _userRepository.AddAsync(new User() { EmailAddress = userDto.EmailAddress, Password = userDto.Password, IsActive = userDto.IsActive, UserRoleId = userDto.UserRoleId });
         }
 
         public async Task<bool> DeleteUser(long Id)
         {
-           return await _userRepository.DeleteAsync(Id);
+            return await _userRepository.DeleteAsync(Id);
         }
 
         public async Task<IEnumerable<User>> GetUsers()
@@ -38,8 +34,8 @@ namespace ReviewApp.Services
 
         public async Task<User> UpdateUser(long Id, UpdateUserDto userDto)
         {
-            var oldUser = await   _userRepository.GetByIdAsync(Id);
-            if (oldUser !=null)
+            var oldUser = await _userRepository.GetByIdAsync(Id);
+            if (oldUser != null)
             {
                 oldUser.EmailAddress = userDto.EmailAddress;
                 oldUser.IsActive = userDto.IsActive;
@@ -50,7 +46,7 @@ namespace ReviewApp.Services
             }
             return null;
 
-          
+
         }
 
         public async Task<User> GetUserLogin(LoginDto loginDto)
