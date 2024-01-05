@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ReviewApp.DTO;
 using ReviewApp.IServices;
 using ReviewApp.Model;
-using System.Threading.Tasks;
 
 namespace ReviewApp.ReviewTaskApi.Controllers
 {
@@ -114,15 +112,15 @@ namespace ReviewApp.ReviewTaskApi.Controllers
             }
         }
         [Route("UpdateReviewTaskStartDateAsync1/{Id:long}/{TaskStartDate:DateOnly}")]
-        public async Task<ActionResult> UpdateReviewTaskStartDateAsync1(long Id, DateOnly TaskStartDate )
+        public async Task<ActionResult> UpdateReviewTaskStartDateAsync1(long Id, DateOnly TaskStartDate)
         {
             try
             {
-                var  reviewTask = await _reviewTaskService.UpdateReviewTaskStartDateAsync(Id,  TaskStartDate);
+                var reviewTask = await _reviewTaskService.UpdateReviewTaskStartDateAsync(Id, TaskStartDate);
 
                 return Ok(reviewTask);
 
-               
+
             }
             catch (Exception ex)
             {

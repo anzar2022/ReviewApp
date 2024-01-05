@@ -1,29 +1,24 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
-using ReviewApp.DTO;
+﻿using Microsoft.IdentityModel.Tokens;
 using ReviewApp.IRepositories;
 using ReviewApp.IServices;
 using ReviewApp.Model;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ReviewApp.Services
 {
     public class AuthService : IAuthService
     {
         private readonly IUserRepository _userRepository;
-    //    private readonly IConfiguration _configuration;
+        //    private readonly IConfiguration _configuration;
         private readonly JwtSettings _jwtSettings;
-        public AuthService(IUserRepository userRepository , JwtSettings  jwtSettings ) {
+        public AuthService(IUserRepository userRepository, JwtSettings jwtSettings)
+        {
             _userRepository = userRepository;
             _jwtSettings = jwtSettings;
-           
+
         }
         public async Task<(string AccessToken, string RefreshToken)> GenerateJwtToken(string EmailAddress, long UserId)
         {
@@ -69,7 +64,7 @@ namespace ReviewApp.Services
             rng.GetBytes(randomNumber);
             return Convert.ToBase64String(randomNumber);
         }
-        public async Task<(string AccessToken, string RefreshToken ,User user)> RefreshAccessTokenAsync(string refreshToken)
+        public async Task<(string AccessToken, string RefreshToken, User user)> RefreshAccessTokenAsync(string refreshToken)
         {
             var user = await _userRepository.GetUserByRefreshTokenAsync(refreshToken);
 
