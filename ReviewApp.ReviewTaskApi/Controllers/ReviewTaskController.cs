@@ -204,7 +204,7 @@ namespace ReviewApp.ReviewTaskApi.Controllers
             {
                 // Log the exception or perform necessary actions
                 // For demonstration purposes, returning a 500 Internal Server Error response
-                return StatusCode(500, "An error occurred while processing the request.");
+                return StatusCode(500, ex.Message);
             }
         }
 
